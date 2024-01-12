@@ -54,4 +54,4 @@ class Mult {
 
 
 $calc = new Somas(new Mult());
-echo $calc->somar(100, 50);
+echo $calc->somar(100, 70);
