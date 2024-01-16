@@ -2,7 +2,7 @@
 
 $n = 4;
 
-function Primo($numero){
+function primo($numero){
     if($numero <= 1){
         return 'n eh primo';
     }
@@ -19,4 +19,4 @@ function Primo($numero){
     }
 }
 
-echo Primo($n);
+echo primo($n);
