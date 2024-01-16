@@ -1,26 +1,26 @@
 <?php
 
 $pessoas = [
-    ['nome' => 'Joao', 'sexo' => 'M', 'nota' =>  8],
-    ['nome' => 'Julia', 'sexo' => 'F', 'nota' =>  8],
-    ['nome' => 'Victor', 'sexo' => 'M', 'nota' =>  5],
-    ['nome' => 'Juliano', 'sexo' => 'M', 'nota' =>  10],
-    ['nome' => 'Ana', 'sexo' => 'F', 'nota' =>  10],
-    ['nome' => 'Renata', 'sexo' => 'F', 'nota' =>  7]
+    ['nome' => 'Joao', 'sexo' => 'Masculino', 'nota' =>  8],
+    ['nome' => 'Julia', 'sexo' => 'Feminino', 'nota' =>  8],
+    ['nome' => 'Victor', 'sexo' => 'Masculino', 'nota' =>  5],
+    ['nome' => 'Juliano', 'sexo' => 'Masculino', 'nota' =>  10],
+    ['nome' => 'Ana', 'sexo' => 'Feminino', 'nota' =>  10],
+    ['nome' => 'Renata', 'sexo' => 'Feminino', 'nota' =>  7]
 ];
 
-$total_f = array_reduce($pessoas, 'somar_f');
-function somar_f($subTotal, $item){
-    if($item['sexo'] == 'F'){
+$totalMulheres = array_reduce($pessoas, 'somarM');
+function somarM($subTotal, $item){
+    if($item['sexo'] == 'Feminino'){
         $subTotal ++;
     }
     return $subTotal;
 }
-echo 'Quantidade de Mulheres: '.$total_f."</br>";
+echo 'Quantidade de Mulheres: '.$totalMulheres."</br>";
 
-$notaFemininas = array_reduce($pessoas, 'notas_f');
-    function notas_f($subTotal, $item){
-    if($item['sexo'] == 'F'){
+$notaFemininas = array_reduce($pessoas, 'notasMulheres');
+    function notasMulheres($subTotal, $item){
+    if($item['sexo'] == 'Feminino'){
         $subTotal += $item['nota'];
     }
     return $subTotal;
@@ -28,19 +28,19 @@ $notaFemininas = array_reduce($pessoas, 'notas_f');
 
 echo 'Notas das Mulheres: '.$notaFemininas."</br>";
 
-$total_m = array_reduce($pessoas, 'somar_m');
+$totalHomens = array_reduce($pessoas, 'somar_m');
     function somar_m($subTotal, $item){
-        if($item['sexo'] == 'M'){
+        if($item['sexo'] == 'Masculino'){
             $subTotal++;
         }
         return $subTotal;
     }
 
-echo 'Quantidade de Homens: '.$total_m."</br>";
+echo 'Quantidade de Homens: '.$totalHomens."</br>";
 
-$notaMasculinas = array_reduce($pessoas, 'notas_m');
-    function notas_m($subTotal, $item){
-        if($item['sexo'] == 'M'){
+$notaMasculinas = array_reduce($pessoas, 'notasHomens');
+    function notasHomens($subTotal, $item){
+        if($item['sexo'] == 'Masculino'){
             $subTotal += $item['nota'];
         }
         return $subTotal;
