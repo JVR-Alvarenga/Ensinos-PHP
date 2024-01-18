@@ -22,10 +22,10 @@ $contaPoupanca->setDeposito(1000);  //depositando na conta poupanca
 $contaPoupanca->setsaque(350);      //sacando da conta poupanca
 echo $contaPoupanca->getVerificacao().'</br>';      //verificando o valor da conta poupanca
 
-use classes\TranferirCorrente;      //puxando o namespace para uso   
+use classes\TransferirCorrente;      //puxando o namespace para uso   
 use classes\TransferirPoupanca;     //puxando o namespace para uso
-$transacao = new TransferirCorrente(new Poupanca(), new Corrente());    //definindo o __construct para uso
-echo $transacao1->transferirParaCorrente(70);       //transferindo
+$transacao1 = new TransferirCorrente(new Poupanca(), new Corrente());    //definindo o __construct para uso
+$transacao1->transferirParaCorrente(570);       //transferindo
 
 $transacao2 = new TransferirPoupanca(new Corrente(), new Poupanca());   //definindo o __construct para uso
-echo $transacao1->transferirParaPoupanca(120);      //transferindo
+$transacao2->transferirParaPoupanca(100);      //transferindo
