@@ -7,11 +7,13 @@ class Banco {
     private $address;
     private $corrente;
     private $poupanca;
+    private $transferencia;
     //criando as propriedades
 
-    public function __construct($c, $p){    //injetando as outras classes apartir do construtor
+    public function __construct($c, $p, $t){    //injetando as outras classes apartir do construtor
         $this->corrente = $c;
         $this->poupanca = $p;
+        $this->transferencia = $t;
     }
 
     public function depositoCorrente($d){   //definindo a funcao de deposito da conta corrente
@@ -26,12 +28,23 @@ class Banco {
     public function saquePoupanca($s){      //definindo a funcao de saque da conta poupanca
         $this->poupanca->setSaque($s);
     }
+
+
+    public function transfCorrente($t){
+        $this->transferencia->transfCorrente($t);
+    }
+    public function transfPoupanca($t){
+        $this->transferencia->transfPoupanca($t);
+    }
+
+
     public function saldoCorrente(){        //mostrando saldo da conta corrente
         return $this->corrente->getVerificar();
     }
     public function saldoPoupanca(){        //mostrando saldo da conta poupanca
         return $this->poupanca->getVerificar();
     }
+
     
     public function tscDepCorrente(){   //depositos da conta corrente
         return $this->corrente->tscDeposito();
@@ -47,6 +60,8 @@ class Banco {
         return $this->poupanca->tscSaque();
     }
     
+
+
     public function setCliente($n, $cpf, $ad){  //definindo o cliente 
         $this->cliente = $n;
         $this->cpf = $cpf;
@@ -58,6 +73,7 @@ class Banco {
         'Endereco do Cliente: '.$this->address.'</br>'.'</br>';
     } 
 }
+
 
 namespace conta;    //definindo o namespace da classe Corrente
 class Corrente {
@@ -75,17 +91,20 @@ class Corrente {
         $this->tscSaque += $s;
     }
 
+
     public function tscDeposito(){   //retornando as transacoes de deposito da conta corrente
-        return 'Dinheiro depositado na conta Corrente: '.$this->tscDeposito.'</br>';
+        return '</br>'.'Dinheiro depositado na conta Corrente: '.$this->tscDeposito.'</br>';
     }
     public function tscSaque(){   //retornando as transacoes de saque da conta corrente
         return 'Dinheiro sacado na conta Corrente: '.$this->tscSaque.'</br>';
     }
 
+
     public function getVerificar(){     //retornando o saldo da conta corrente
         return 'Saldo da Conta Corrente: '.$this->contaCorrente.'</br>';
     }
 }
+
 
 namespace conta;    //definindo namespace da classes Poupanca
 class Poupanca {
@@ -94,7 +113,7 @@ class Poupanca {
     private $tscSaque = 0;
 
     public function setDeposito($d){    //depositando na conta poupanca
-        $this->contaPoupanca += $d;
+        $this->contaPoupanca += $d + ($d * 2 / 100);
         $this->tscDeposito += $d;
     }
 
@@ -111,7 +130,31 @@ class Poupanca {
         return 'Dinheiro sacado na conta Poupanca: '.$this->tscSaque.'</br>';
     }
 
+
     public function getVerificar(){        //retornando o saldo da conta poupanca
         return 'Saldo da Conta Poupanca: '.$this->contaPoupanca.'</br>';
     }
 }
+
+
+namespace efetuacoes;
+class Transferencia {
+    private $corrente;
+    private $poupanca;
+
+    public function __construct($c, $p){
+        $this->corrente = $c;
+        $this->poupanca = $p;
+    }
+
+    public function transfCorrente($c){
+        $this->corrente->setDeposito($c);
+        $this->poupanca->setSaque($c);
+    } 
+    public function transfPoupanca($p){
+        $this->poupanca->setDeposito($p);
+        $this->corrente->setSaque($p);
+    }
+
+}
+
