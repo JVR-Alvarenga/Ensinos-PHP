@@ -5,8 +5,7 @@ $n = 4;
 function primo($numero){
     if($numero <= 1){
         return 'n eh primo';
-    }
-    if($numero == 2){
+    }elseif($numero == 2){
         return 'primo';
     }
 
