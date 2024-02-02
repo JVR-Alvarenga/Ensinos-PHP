@@ -16,7 +16,6 @@ function somarM($subTotal, $item){
     }
     return $subTotal;
 }
-echo 'Quantidade de Mulheres: '.$totalMulheres."</br>";
 
 $notaFemininas = array_reduce($pessoas, 'notasMulheres');
     function notasMulheres($subTotal, $item){
@@ -26,8 +25,6 @@ $notaFemininas = array_reduce($pessoas, 'notasMulheres');
     return $subTotal;
 }
 
-echo 'Notas das Mulheres: '.$notaFemininas."</br>";
-
 $totalHomens = array_reduce($pessoas, 'somar_m');
     function somar_m($subTotal, $item){
         if($item['sexo'] == 'Masculino'){
@@ -35,8 +32,6 @@ $totalHomens = array_reduce($pessoas, 'somar_m');
         }
         return $subTotal;
     }
-
-echo 'Quantidade de Homens: '.$totalHomens."</br>";
 
 $notaMasculinas = array_reduce($pessoas, 'notasHomens');
     function notasHomens($subTotal, $item){
@@ -46,8 +41,10 @@ $notaMasculinas = array_reduce($pessoas, 'notasHomens');
         return $subTotal;
     }
 
+echo 'Quantidade de Mulheres: '.$totalMulheres."</br>";
+echo 'Notas das Mulheres: '.$notaFemininas."</br>";
+echo 'Quantidade de Homens: '.$totalHomens."</br>";
 echo 'Notas dos Homens: '.$notaMasculinas."</br>";
-
 
 if($notaMasculinas > $notaFemininas){
     echo 'O total das notas dos Homens é maior que a das Mulheres !';
