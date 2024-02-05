@@ -17,15 +17,15 @@ if($name && $email){
         $sql->bindValue('email', $email);
         $sql->execute();
 
-        header("Location: index.php");
+        header("Location: ../index.php");
         exit;
 
     }else{
-        header("Location: index.php");
+        header("Location: ../index.php");
         exit;
     }
 
 }else{
-    header("Location: index.php");
+    header("Location: ../index.php");
     exit;
 }
