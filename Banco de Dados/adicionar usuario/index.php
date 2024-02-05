@@ -9,7 +9,7 @@ if($sql->rowCount() > 0){
 }
 ?>
 
-<a href="adicionar.php">ADICIONAR USUÁRIO</a>
+<a href="adicionar.html">ADICIONAR USUÁRIO</a>
 <table border="1" width="100%">
     <tr>
         <th>ID</th>
