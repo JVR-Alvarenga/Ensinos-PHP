@@ -49,16 +49,14 @@ class UsuarioDao implements MethodosDao{
 
 
     public function findByPassWord($passWord){
-        $sql = $this->pdo-prepare("SELECT * FROM operadores WHERE senha = :senha");
+        $sql = $this->pdo->prepare("SELECT * FROM operadores WHERE senha = :senha");
         $sql->bindValue(':senha', $passWord);
         $sql->execute();
 
         if($sql->rowCount() > 0){
-            header("index.php");
-            exit;
+            return true;
         }else{
-            header("login.php");
-            exit;
+            return false;
         }
     }
 

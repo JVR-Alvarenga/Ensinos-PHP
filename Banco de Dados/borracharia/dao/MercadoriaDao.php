@@ -25,7 +25,7 @@ class MercadoriaDao implements MethodosDao{
     public function findAll(){
         $array = [];
 
-        $sql->$this->pdo->query("SELECT * FROM mercadorias");
+        $sql = $this->pdo->query("SELECT * FROM mercadorias");
         if($sql->rowCount() > 0){
             $storage = $sql->fetchAll();
 
@@ -68,7 +68,7 @@ class MercadoriaDao implements MethodosDao{
     }
 
 
-    public function update(Usuario $m){
+    public function update(Mercadoria $m){
         $sql = $this->pdo-prepare("UPDATE mercadorias SET name=:name, preco=:preco");
         $sql->bindValue(':name', $m->getName());
         $sql->bindValue(':preco', $m->getPreco());
