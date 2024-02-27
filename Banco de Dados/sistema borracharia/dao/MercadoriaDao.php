@@ -13,7 +13,7 @@ class MercadoriaDao implements MethodosDao{
     public function add(Mercadoria $m){
         $sql = $this->pdo->prepare("INSERT INTO mercadorias (name, preco) VALUES (:name, :preco)");
         $sql->bindValue(':name', $m->getName());
-        $sql->bindValue(':email', $m->getPreco());
+        $sql->bindValue(':preco', $m->getPreco());
         $sql->execute();
 
         $m->setId($this->pdo->lastInsertId());
@@ -37,12 +37,11 @@ class MercadoriaDao implements MethodosDao{
 
                 $array[] = $m;
             }
+            return $array;
 
         }else{
             return false;
         }
-
-        return $array;
     }
 
 
@@ -57,8 +56,27 @@ class MercadoriaDao implements MethodosDao{
             $m = new Mercadoria();
             $m->setId($storage['id']);
             $m->setName($storage['name']);
-            $m->setEmail($storage['email']);
-            $m->setPassWord($storage['senha']);
+            $m->setPreco($storage['preco']);
+
+            return $m;
+        }else{
+            return false;
+        }
+
+    }
+
+    public function findByName($name){
+        $sql = $this->pdo->prepare("SELECT * FROM mercadorias WHERE name = :name");
+        $sql->bindValue(':name', $name);
+        $sql->execute();
+
+        if($sql->rowCount() > 0){
+            $storage = $sql->fetch();
+
+            $m = new Mercadoria();
+            $m->setId($storage['id']);
+            $m->setName($storage['name']);
+            $m->setPreco($storage['preco']);
 
             return $m;
         }else{
@@ -69,7 +87,8 @@ class MercadoriaDao implements MethodosDao{
 
 
     public function update(Mercadoria $m){
-        $sql = $this->pdo-prepare("UPDATE mercadorias SET name=:name, preco=:preco");
+        $sql = $this->pdo->prepare("UPDATE mercadorias SET name=:name, preco=:preco WHERE id=:id");
+        $sql->bindValue(':id', $m->getId());
         $sql->bindValue(':name', $m->getName());
         $sql->bindValue(':preco', $m->getPreco());
         $sql->execute();
@@ -79,7 +98,7 @@ class MercadoriaDao implements MethodosDao{
 
 
     public function delete($id){
-        $sql = $this->pdo-prepare("DELETE FROM mercadorias WHERE id=:id");
+        $sql = $this->pdo->prepare("DELETE FROM mercadorias WHERE id=:id");
         $sql->bindValue(':id', $id);
         $sql->execute();
 
