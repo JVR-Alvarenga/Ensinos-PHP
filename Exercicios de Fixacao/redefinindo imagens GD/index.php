@@ -46,7 +46,7 @@ imagecopyresampled(         //copiando imagem orinal e colocando as proporcoes
 );
 
 header("Content-Type: image/jpeg");
-imagejpeg($image, null , 100);
+imagejpeg($image, null , 100);      //mostrando imagem
 
 
 
