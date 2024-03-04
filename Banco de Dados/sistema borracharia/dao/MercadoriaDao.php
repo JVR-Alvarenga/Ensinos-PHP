@@ -65,24 +65,24 @@ class MercadoriaDao implements MethodosDao{
 
     }
 
-    public function findByName($name){
-        $sql = $this->pdo->prepare("SELECT * FROM mercadorias WHERE name = :name");
-        $sql->bindValue(':name', $name);
+    public function findBySearch($produto){
+        $sql = $this->pdo->prepare("SELECT * FROM mercadorias WHERE id LIKE '%$produto%' or name LIKE '%$produto%'");
         $sql->execute();
 
+        $array = [];
         if($sql->rowCount() > 0){
-            $storage = $sql->fetch();
+            $storage = $sql->fetchAll();
 
-            $m = new Mercadoria();
-            $m->setId($storage['id']);
-            $m->setName($storage['name']);
-            $m->setPreco($storage['preco']);
+            foreach($storage as $itens){
+                $m = new Mercadoria();
+                $m->setId($itens['id']);
+                $m->setName($itens['name']);
+                $m->setPreco($itens['preco']);
 
-            return $m;
-        }else{
-            return false;
+                $array[] = $m;
+            }
+            return $array;
         }
-
     }
 
 

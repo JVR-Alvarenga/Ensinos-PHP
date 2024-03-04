@@ -33,7 +33,7 @@ interface MethodosDao {
     public function add(Mercadoria $u);
     public function findAll();
     public function findById($id);
-    public function findByName($name);
+    public function findBySearch($produto);
     public function update(Mercadoria $u);
     public function delete($id);
 }

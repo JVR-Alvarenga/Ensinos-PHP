@@ -34,7 +34,7 @@ $storage = $dao->findAll();
     </h3>
 
     <form action="buscar.php" method="POST" >
-        <input type="text" name="produto" placeholder="Buscar Mercadoria:" />
+        <input type="text" name="busca" placeholder="Buscar Mercadoria:" />
     </form>
 
 </div>
