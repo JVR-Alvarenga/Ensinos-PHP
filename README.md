@@ -1,4 +1,4 @@
 # Exercicios_PHP
  
 ## Sobre o Projeto
-Este é um reppositório sobre meus estudo com a liguagem PHP pura 
+Este é um repositório sobre meus estudo com a liguagem PHP pura 
